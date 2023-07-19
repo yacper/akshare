@@ -2468,21 +2468,34 @@ amac_manager_cancelled_info # 中国证券投资基金业协会-信息公示-诚
 1.10.51 fix: fix fund_money_rank_em interface
 1.10.52 fix: fix stock_financial_hk_report_em interface
 1.10.53 fix: fix index_stock_cons_csindex interface
+1.10.54 fix: fix macro_usa_core_cpi_monthly interface
+1.10.55 fix: fix macro_usa_personal_spending interface
+1.10.56 fix: fix stock_zh_b_daily interface
+1.10.57 fix: fix stock_zh_valuation_baidu interface
+1.10.58 fix: fix fund_etf_hist_em interface
+1.10.59 add: add fund_announcement_personnel_em interface
+1.10.60 add: add macro_usa_cpi_yoy interface
+1.10.61 fix: fix macro_cnbs interface
 """
 
-__version__ = "1.10.53"
+__version__ = "1.10.61"
 __author__ = "AKFamily"
 
 import sys
-import warnings
+# import warnings
 
-if sys.version_info < (3, 8):
-    warnings.warn(
-        "为了支持更多特性，AKShare 将于 2023-07-01 停止对 Python 3.7 及以下版本的支持，请尽快升级 Python 版本"
-    )
-    # sys.exit(1)
+# if sys.version_info < (3, 8):
+#     warnings.warn(
+#         "为了支持更多特性，请尽快升级 Python 版本到 3.8 及以上"
+#     )
+#     sys.exit(1)
 
 del sys
+
+"""
+基金公告-人事公告
+"""
+from akshare.fund.fund_announcement import fund_announcement_personnel_em
 
 """
 新浪财经-ESG评级中心
@@ -4559,6 +4572,7 @@ from akshare.economic.macro_usa import (
     macro_usa_adp_employment,
     macro_usa_core_pce_price,
     macro_usa_cpi_monthly,
+    macro_usa_cpi_yoy,
     macro_usa_crude_inner,
     macro_usa_gdp_monthly,
     macro_usa_initial_jobless,

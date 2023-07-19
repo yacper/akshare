@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-Date: 2023/5/10 17:00
+Date: 2023/7/19 18:00
 Desc: 金十数据中心-经济指标-美国
 https://datacenter.jin10.com/economic
 """
@@ -199,10 +199,47 @@ def macro_usa_cpi_monthly() -> pd.DataFrame:
     return temp_df
 
 
+# 东方财富-经济指标-美国-物价水平-美国核心CPI月率报告
+def macro_usa_cpi_yoy() -> pd.DataFrame:
+    """
+    东方财富-经济数据一览-美国-CPI年率, 数据区间从 2008-至今
+    https://data.eastmoney.com/cjsj/foreign_0_12.html
+    :return: 美国 CPI 年率报告
+    :rtype: pandas.DataFrame
+    """
+    url = "https://datacenter-web.eastmoney.com/api/data/v1/get"
+    params = {
+        "reportName": "RPT_ECONOMICVALUE_USA",
+        "columns": "ALL",
+        "filter": '(INDICATOR_ID="EMG00000733")',
+        "sortColumns": "REPORT_DATE",
+        "sortTypes": "-1",
+        "source": "WEB",
+        "client": "WEB",
+        "_": "1689320600161",
+    }
+    r = requests.get(url, params=params)
+    data_json = r.json()
+    data_list = data_json["result"]["data"]
+    temp_df = pd.DataFrame(data_list, columns=['REPORT_DATE', 'PUBLISH_DATE', 'VALUE', 'PRE_VALUE'])
+    temp_df.columns = [
+            "时间",
+            "发布日期",
+            "现值",
+            "前值",
+        ]
+    temp_df["时间"] = pd.to_datetime(temp_df["时间"], errors="coerce").dt.date
+    temp_df["发布日期"] = pd.to_datetime(temp_df["发布日期"], errors="coerce").dt.date
+    temp_df["前值"] = pd.to_numeric(temp_df["前值"], errors="coerce")
+    temp_df["现值"] = pd.to_numeric(temp_df["现值"], errors="coerce")
+    temp_df.sort_values(['时间'], inplace=True, ignore_index=True)
+    return temp_df
+
+
 # 金十数据中心-经济指标-美国-物价水平-美国核心CPI月率报告
 def macro_usa_core_cpi_monthly() -> pd.DataFrame:
     """
-    美国核心CPI月率报告, 数据区间从19700101-至今
+    美国核心 CPI 月率报告, 数据区间从 19700101-至今
     https://datacenter.jin10.com/reportType/dc_usa_core_cpi
     https://cdn.jin10.com/dc/reports/dc_usa_core_cpi_all.js?v=1578740570
     :return: 美国核心CPI月率报告-今值(%)
@@ -256,6 +293,11 @@ def macro_usa_core_cpi_monthly() -> pd.DataFrame:
     temp_df.index.name = None
     temp_df.name = "usa_core_cpi"
     temp_df = temp_df.astype("float")
+    temp_df = pd.DataFrame(temp_df)
+    temp_df.reset_index(inplace=True, drop=False)
+    temp_df.columns = ['date', 'value']
+    temp_df['date'] = pd.to_datetime(temp_df['date'], errors="coerce").dt.date
+    temp_df['value'] = pd.to_numeric(temp_df['value'], errors="coerce")
     return temp_df
 
 

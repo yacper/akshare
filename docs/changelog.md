@@ -63,6 +63,39 @@
 
 ## 更新说明详情
 
+1.10.61 fix: fix macro_cnbs interface
+
+    1. 修复 macro_cnbs 接口
+
+1.10.60 add: add macro_usa_cpi_yoy interface
+
+    1. 新增 macro_usa_cpi_yoy 接口
+
+1.10.59 add: add fund_announcement_personnel_em interface
+
+    1. 新增 fund_announcement_personnel_em 接口
+
+1.10.58 fix: fix fund_etf_hist_em interface
+
+    1. 修复 fund_etf_hist_em 接口
+
+1.10.57 fix: fix stock_zh_valuation_baidu interface
+
+    1. 修复 stock_zh_valuation_baidu 接口
+
+1.10.56 fix: fix stock_zh_b_daily interface
+
+    1. 修复 stock_zh_b_daily 接口
+
+1.10.55 fix: fix macro_usa_personal_spending interface
+
+    1. 修复 macro_usa_personal_spending 接口
+    2. 修复 append to concat 方法
+
+1.10.54 fix: fix macro_usa_core_cpi_monthly interface
+
+    1. 修复 macro_usa_core_cpi_monthly 接口
+
 1.10.53 fix: fix index_stock_cons_csindex interface
 
     1. 修复 index_stock_cons_csindex 接口
@@ -2624,6 +2657,22 @@
     3. 修改 air_quality_hist 接口的请求日期格式，从 '2022-01-01' 为 '20220101'
 
 ## 版本更新说明
+
+1.10.61 fix: fix macro_cnbs interface
+
+1.10.60 add: add macro_usa_cpi_yoy interface
+
+1.10.59 add: add fund_announcement_personnel_em interface
+
+1.10.58 fix: fix fund_etf_hist_em interface
+
+1.10.57 fix: fix stock_zh_valuation_baidu interface
+
+1.10.56 fix: fix stock_zh_b_daily interface
+
+1.10.55 fix: fix macro_usa_personal_spending interface
+
+1.10.54 fix: fix macro_usa_core_cpi_monthly interface
 
 1.10.53 fix: fix index_stock_cons_csindex interface
 
